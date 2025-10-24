@@ -464,7 +464,7 @@
 					"response": []
 				},
 				{
-					"name": "read.Board-Items",
+					"name": "create.Board-Item",
 					"event": [
 						{
 							"listen": "test",
