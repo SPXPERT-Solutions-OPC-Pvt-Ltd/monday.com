@@ -37,7 +37,7 @@
 					"response": []
 				},
 				{
-					"name": "read-BoardsInformation",
+					"name": "read-Boards",
 					"event": [
 						{
 							"listen": "test",
