@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "323184-7c948cf2-da3e-4a2d-81c2-1541dae30906",
+		"name": "monday.com | Postman Queries",
+		"description": "This postman collection contains common queries and mutations for Monday.com GraphQL. Use this to get familier with writing GraphQL and interacting with your monday.com data.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Version 2025-10",
+			"item": [
+				{
+					"name": "Me",
+					"id": "323184-005a80af-0d88-44f6-abca-a52f72b6821a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\":\"{me{id,name}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}",
+							"host": [
+								"{{api_endpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Boards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9a05a87-52de-42bd-b890-6d82c9b8ff2b",
+								"exec": [
+									"// Visualization Script",
+									"// Visualization Script",
+									"const template = `",
+									"<h3>Board Items</h3>",
+									"<table border=\"1\" cellpadding=\"6\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:700px;\">",
+									"  <thead>",
+									"    <tr>",
+									"      <th>#</th>",
+									"      <th>Item Name</th>",
+									"      <th>Item ID</th>",
+									"      <th>State</th>",
+									"    </tr>",
+									"  </thead>",
+									"  <tbody>",
+									"    {{#each items}}",
+									"      <tr>",
+									"        <td>{{@index}}</td>",
+									"        <td>{{name}}</td>",
+									"        <td>{{id}}</td>",
+									"        <td>{{state}}</td>",
+									"      </tr>",
+									"    {{/each}}",
+									"  </tbody>",
+									"</table>",
+									"<style>table{margin:auto;}th,td{text-align:left;}</style>",
+									"`;",
+									"",
+									"function createPayload() {",
+									"    var res = pm.response.json();",
+									"    var items = [];",
+									"    if (res && res.data && Array.isArray(res.data.boards)) {",
+									"        res.data.boards.forEach(board => {",
+									"            if (board.items_page && Array.isArray(board.items_page.items)) {",
+									"                items = items.concat(board.items_page.items.map(item => ({",
+									"                    id: item.id || '',",
+									"                    name: item.name || 'Unnamed Item',",
+									"                    state: item.state || ''",
+									"                })));",
+									"            }",
+									"        });",
+									"    }",
+									"    return { items };",
+									"}",
+									"pm.visualizer.set(template, createPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "323184-1a5c7a76-1b59-4403-8510-93106b825c58",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"query\": \"{boards {id state  name }}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}",
+							"host": [
+								"{{api_endpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board-Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9a05a87-52de-42bd-b890-6d82c9b8ff2b",
+								"exec": [
+									"// Visualization Script",
+									"// Visualization Script",
+									"const template = `",
+									"<h3>Board Items</h3>",
+									"<table border=\"1\" cellpadding=\"6\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:700px;\">",
+									"  <thead>",
+									"    <tr>",
+									"      <th>#</th>",
+									"      <th>Item Name</th>",
+									"      <th>Item ID</th>",
+									"      <th>State</th>",
+									"    </tr>",
+									"  </thead>",
+									"  <tbody>",
+									"    {{#each items}}",
+									"      <tr>",
+									"        <td>{{@index}}</td>",
+									"        <td>{{name}}</td>",
+									"        <td>{{id}}</td>",
+									"        <td>{{state}}</td>",
+									"      </tr>",
+									"    {{/each}}",
+									"  </tbody>",
+									"</table>",
+									"<style>table{margin:auto;}th,td{text-align:left;}</style>",
+									"`;",
+									"",
+									"function createPayload() {",
+									"    var res = pm.response.json();",
+									"    var items = [];",
+									"    if (res && res.data && Array.isArray(res.data.boards)) {",
+									"        res.data.boards.forEach(board => {",
+									"            if (board.items_page && Array.isArray(board.items_page.items)) {",
+									"                items = items.concat(board.items_page.items.map(item => ({",
+									"                    id: item.id || '',",
+									"                    name: item.name || 'Unnamed Item',",
+									"                    state: item.state || ''",
+									"                })));",
+									"            }",
+									"        });",
+									"    }",
+									"    return { items };",
+									"}",
+									"pm.visualizer.set(template, createPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "323184-b308d623-5c94-4847-a6c1-2bdb83220e2d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state  name }}}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}",
+							"host": [
+								"{{api_endpoint}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "323184-64e70d3b-571b-4aad-8b9c-8d203cbec866",
+			"description": "This folder contains monday.com GraphQL examples\n\nQ4 2025\n\nAlpha testing for a small group of users on Project boards. Developer accounts gain access.\n\nAPI Version **2025-10**:\n\n- `boards` query returns only classic boards by default.\n    \n- `hierarchy_type` field is added to the boards object."
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "refreshRequestParams",
+				"value": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"enabled": true,
+						"send_as": "request_body"
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"enabled": true,
+						"send_as": "request_body"
+					},
+					{
+						"key": "refresh_token",
+						"value": "{{refresh_token}}",
+						"enabled": true,
+						"send_as": "request_body"
+					},
+					{
+						"key": "grant_type",
+						"value": "refresh_token",
+						"enabled": true,
+						"send_as": "request_body"
+					}
+				],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"enabled": true,
+						"send_as": "request_body"
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"enabled": true,
+						"send_as": "request_body"
+					},
+					{
+						"key": "redirect_uri",
+						"value": "{{redirect_uri}}",
+						"enabled": true,
+						"send_as": "request_body"
+					}
+				],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"enabled": true,
+						"send_as": "request_url"
+					},
+					{
+						"key": "grant_type",
+						"value": "code",
+						"enabled": true,
+						"send_as": "request_url"
+					}
+				],
+				"type": "any"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "{{redirect_uri}}",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "grant_type",
+				"value": "authorization_code",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://auth.monday.com/oauth2/authorize",
+				"type": "string"
+			},
+			{
+				"key": "refreshTokenUrl",
+				"value": "https://auth.monday.com/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://auth.monday.com/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "state",
+				"value": "23102025",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "{{scopes}}",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Monday-Token",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "59eae0f8-5ef7-48d6-955e-a044f1959b3d",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "beeb46ee-f45d-4178-9c4e-2fc2edc0f35f",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
