@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"query\":\"{me{id,name}}\"}",
+							"raw": "{\"query\":\"{me{id,name,birthday, country_code}}\"}",
 							"options": {
 								"raw": {
 									"language": "json"
