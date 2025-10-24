@@ -423,7 +423,7 @@
 					"response": []
 				},
 				{
-					"name": "read.Board-Items",
+					"name": "read.Board-Items-Filters",
 					"event": [
 						{
 							"listen": "test",
