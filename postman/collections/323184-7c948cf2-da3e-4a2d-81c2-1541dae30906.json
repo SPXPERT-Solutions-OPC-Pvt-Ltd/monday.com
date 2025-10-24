@@ -531,7 +531,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page (limit:3, cursor:\\\"MSw1MDE3MjE3NTA5LEotR3B3WXNMNHpEY3RuRkJuNld1WSw3LDMsfDEyMjEwNDc1OA\\\") { items { id state name  } cursor}}}\"\n}\n",
+							"raw": "{\n\"mutation\": \"{ create_item {board_id: 5017217509, item_name: \\\"Create postman collection and share with the world!\\\"}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
