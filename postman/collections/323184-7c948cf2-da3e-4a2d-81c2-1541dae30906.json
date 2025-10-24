@@ -488,7 +488,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"mutation\": \"{ create_item(board_id: 5017217509, item_name: \\\"Create postman collection and share with the world!\\\"){id name}}\"\n}\n",
+							"raw": "{\n\"query\": \"{mutation{create_item(board_id: 5017217509, item_name: \\\"Create postman collection for the world!\\\"){id name}}}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
