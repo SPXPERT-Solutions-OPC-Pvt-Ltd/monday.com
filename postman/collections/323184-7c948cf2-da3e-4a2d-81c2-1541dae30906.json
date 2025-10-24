@@ -503,6 +503,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "create.Board-Item Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9a05a87-52de-42bd-b890-6d82c9b8ff2b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "323184-ca0757c1-6101-48f1-807d-22f327d6684c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"query\": \"mutation {create_item(board_id: 5017217509, group_id: \\\"topics\\\" item_name: \\\"Create postman collection for the world!\\\"){id name}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}",
+							"host": [
+								"{{api_endpoint}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "323184-64e70d3b-571b-4aad-8b9c-8d203cbec866",
