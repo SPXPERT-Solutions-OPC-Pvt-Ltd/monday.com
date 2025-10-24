@@ -505,7 +505,7 @@
 					"response": []
 				},
 				{
-					"name": "create.Board-Item Copy",
+					"name": "update.Board-ItemValues",
 					"event": [
 						{
 							"listen": "test",
