@@ -512,6 +512,91 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "read.Board-Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9a05a87-52de-42bd-b890-6d82c9b8ff2b",
+								"exec": [
+									"// Visualization Script",
+									"// Visualization Script",
+									"const template = `",
+									"<h3>Board Items</h3>",
+									"<table border=\"1\" cellpadding=\"6\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:700px;\">",
+									"  <thead>",
+									"    <tr>",
+									"      <th>#</th>",
+									"      <th>Item Name</th>",
+									"      <th>Item ID</th>",
+									"      <th>State</th>",
+									"    </tr>",
+									"  </thead>",
+									"  <tbody>",
+									"    {{#each items}}",
+									"      <tr>",
+									"        <td>{{@index}}</td>",
+									"        <td>{{name}}</td>",
+									"        <td>{{id}}</td>",
+									"        <td>{{state}}</td>",
+									"      </tr>",
+									"    {{/each}}",
+									"  </tbody>",
+									"</table>",
+									"<style>table{margin:auto;}th,td{text-align:left;}</style>",
+									"`;",
+									"",
+									"function createPayload() {",
+									"    var res = pm.response.json();",
+									"    var items = [];",
+									"    if (res && res.data && Array.isArray(res.data.boards)) {",
+									"        res.data.boards.forEach(board => {",
+									"            if (board.items_page && Array.isArray(board.items_page.items)) {",
+									"                items = items.concat(board.items_page.items.map(item => ({",
+									"                    id: item.id || '',",
+									"                    name: item.name || 'Unnamed Item',",
+									"                    state: item.state || ''",
+									"                })));",
+									"            }",
+									"        });",
+									"    }",
+									"    return { items };",
+									"}",
+									"pm.visualizer.set(template, createPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "323184-cc9fe306-0305-421d-aeb1-a7ad5b27d88f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page (limit:3, cursor:'MSw1MDE3MjE3NTA5LEotR3B3WXNMNHpEY3RuRkJuNld1WSw3LDMsfDEyMjEwNDc1OA') { items { id state name  } cursor}}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_endpoint}}",
+							"host": [
+								"{{api_endpoint}}"
+							]
+						},
+						"description": "Get board items and related metadata"
+					},
+					"response": []
 				}
 			],
 			"id": "323184-64e70d3b-571b-4aad-8b9c-8d203cbec866",
