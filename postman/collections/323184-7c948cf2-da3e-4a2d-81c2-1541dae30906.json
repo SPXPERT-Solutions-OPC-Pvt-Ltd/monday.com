@@ -529,7 +529,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"query\": \"mutation {create_item(board_id: 5017217509, group_id: \\\"topics\\\" item_name: \\\"Create postman collection for the world!\\\"){id name}}\"\n}\n",
+							"raw": "{\n\"query\": \"mutation {change_multiple_column_values(board_id: 5017217509, item_id:5018446907, group_id: \\\"topics\\\", colum_values:{\\\"status\\\":\\\"Working on it\\\" } ){id name}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
