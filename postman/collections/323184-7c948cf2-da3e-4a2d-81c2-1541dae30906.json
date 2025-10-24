@@ -289,7 +289,7 @@
 					"response": []
 				},
 				{
-					"name": "read.Board-Items Copy",
+					"name": "read.Board-SubItems",
 					"event": [
 						{
 							"listen": "test",
