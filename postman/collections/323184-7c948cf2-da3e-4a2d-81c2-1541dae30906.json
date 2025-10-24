@@ -505,7 +505,7 @@
 					"response": []
 				},
 				{
-					"name": "update.Board-ItemValues",
+					"name": "update.Board-Item",
 					"event": [
 						{
 							"listen": "test",
