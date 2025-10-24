@@ -121,7 +121,7 @@
 					"response": []
 				},
 				{
-					"name": "Board-Items",
+					"name": "read.Board-Items",
 					"event": [
 						{
 							"listen": "test",
