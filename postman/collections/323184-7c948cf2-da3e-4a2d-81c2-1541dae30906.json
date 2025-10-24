@@ -317,7 +317,7 @@
 						},
 						{
 							"id": "323184-12c1b8c8-bd30-455c-91b7-ea00dfc0483e",
-							"name": "read.Board-Items-Paging Copy",
+							"name": "read.Board-Items-Cursor",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
