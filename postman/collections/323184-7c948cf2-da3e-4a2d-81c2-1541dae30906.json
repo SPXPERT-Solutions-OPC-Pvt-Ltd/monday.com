@@ -188,7 +188,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state  name }}}}\"\n}\n",
+							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state name  }}}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
