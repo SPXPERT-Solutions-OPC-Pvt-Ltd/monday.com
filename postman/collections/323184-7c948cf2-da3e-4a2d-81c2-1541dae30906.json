@@ -286,7 +286,36 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"id": "323184-092229b2-3b8b-4a86-94af-a4adabe735bb",
+							"name": "read.Board-Items",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state name  }}}}\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_endpoint}}",
+									"host": [
+										"{{api_endpoint}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"responseTime": null,
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "read.Board-SubItems",
