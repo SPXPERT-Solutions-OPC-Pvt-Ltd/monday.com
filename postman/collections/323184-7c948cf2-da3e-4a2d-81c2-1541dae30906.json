@@ -20,7 +20,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"query\":\"{me{id,name,birthday, country_code}}\"}",
+							"raw": "{\"query\":\"{me{id,name,birthday, country_code teams{id name}}}\"}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,21 +44,20 @@
 							"script": {
 								"id": "c9a05a87-52de-42bd-b890-6d82c9b8ff2b",
 								"exec": [
-									"// Visualization Script",
-									"// Visualization Script",
+									"// Visualization Script for Boards Table",
 									"const template = `",
-									"<h3>Board Items</h3>",
+									"<h3>Boards</h3>",
 									"<table border=\"1\" cellpadding=\"6\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:700px;\">",
 									"  <thead>",
 									"    <tr>",
 									"      <th>#</th>",
-									"      <th>Item Name</th>",
-									"      <th>Item ID</th>",
+									"      <th>Name</th>",
+									"      <th>ID</th>",
 									"      <th>State</th>",
 									"    </tr>",
 									"  </thead>",
 									"  <tbody>",
-									"    {{#each items}}",
+									"    {{#each boards}}",
 									"      <tr>",
 									"        <td>{{@index}}</td>",
 									"        <td>{{name}}</td>",
@@ -73,21 +72,18 @@
 									"",
 									"function createPayload() {",
 									"    var res = pm.response.json();",
-									"    var items = [];",
+									"    var boards = [];",
 									"    if (res && res.data && Array.isArray(res.data.boards)) {",
-									"        res.data.boards.forEach(board => {",
-									"            if (board.items_page && Array.isArray(board.items_page.items)) {",
-									"                items = items.concat(board.items_page.items.map(item => ({",
-									"                    id: item.id || '',",
-									"                    name: item.name || 'Unnamed Item',",
-									"                    state: item.state || ''",
-									"                })));",
-									"            }",
-									"        });",
+									"        boards = res.data.boards.map(board => ({",
+									"            id: board.id || '',",
+									"            name: board.name || 'Unnamed',",
+									"            state: board.state || ''",
+									"        }));",
 									"    }",
-									"    return { items };",
+									"    return { boards };",
 									"}",
-									"pm.visualizer.set(template, createPayload());"
+									"pm.visualizer.set(template, createPayload());",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -131,23 +127,21 @@
 									"// Visualization Script",
 									"// Visualization Script",
 									"const template = `",
-									"<h3>Board Items</h3>",
+									"<h3>Board Columns</h3>",
 									"<table border=\"1\" cellpadding=\"6\" cellspacing=\"0\" style=\"border-collapse:collapse;max-width:700px;\">",
 									"  <thead>",
 									"    <tr>",
 									"      <th>#</th>",
-									"      <th>Item Name</th>",
-									"      <th>Item ID</th>",
-									"      <th>State</th>",
+									"      <th>Column ID</th>",
+									"      <th>Title</th>",
 									"    </tr>",
 									"  </thead>",
 									"  <tbody>",
-									"    {{#each items}}",
+									"    {{#each columns}}",
 									"      <tr>",
 									"        <td>{{@index}}</td>",
-									"        <td>{{name}}</td>",
 									"        <td>{{id}}</td>",
-									"        <td>{{state}}</td>",
+									"        <td>{{title}}</td>",
 									"      </tr>",
 									"    {{/each}}",
 									"  </tbody>",
@@ -157,19 +151,18 @@
 									"",
 									"function createPayload() {",
 									"    var res = pm.response.json();",
-									"    var items = [];",
+									"    var columns = [];",
 									"    if (res && res.data && Array.isArray(res.data.boards)) {",
 									"        res.data.boards.forEach(board => {",
-									"            if (board.items_page && Array.isArray(board.items_page.items)) {",
-									"                items = items.concat(board.items_page.items.map(item => ({",
-									"                    id: item.id || '',",
-									"                    name: item.name || 'Unnamed Item',",
-									"                    state: item.state || ''",
+									"            if (Array.isArray(board.columns)) {",
+									"                columns = columns.concat(board.columns.map(col => ({",
+									"                    id: col.id || '',",
+									"                    title: col.title || ''",
 									"                })));",
 									"            }",
 									"        });",
 									"    }",
-									"    return { items };",
+									"    return { columns };",
 									"}",
 									"pm.visualizer.set(template, createPayload());"
 								],
@@ -188,7 +181,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state  name }}}}\"\n}\n",
+							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){id name columns {id title}}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -295,7 +288,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state name  }}}}\"\n}\n",
+									"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page (limit:3) { items { id state name  } cursor}}}\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -413,7 +406,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state name  }}}}\"\n}\n",
+							"raw": "{\n\"query\": \"{boards (ids: [5017217509]){ items_page { items { id state name subitems{name} }}}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
